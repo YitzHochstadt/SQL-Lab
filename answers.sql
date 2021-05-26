@@ -12,7 +12,7 @@ OR ship_postal_code = '3012'
 OR ship_postal_code = '12209' 
 OR  ship_postal_code ='05023';
 --6
-SELECT * FROM orders WHERE ship_region <> 'null';
+SELECT * FROM orders WHERE ship_region IS NOT NULL;
 --7
 SELECT * FROM customers ORDER BY country, city;
 --8
@@ -48,9 +48,7 @@ JOIN order_details ON orders.order_id = order_details.order_id
 JOIN products ON order_details.product_id = products.product_id
 WHERE products.discontinued = 1;
 --17
-SELECT manager.first_name FROM employees AS "subordinate"
-JOIN employees AS "manager" ON subordinate.reports_to = manager.employee_id
-WHERE manager.first_name <> 'Steven';
+SELECT first_name FROM employees WHERE reports_to IS NULL;
 --18
 SELECT subordinate.first_name FROM employees AS "subordinate"
 JOIN employees AS "manager" ON subordinate.reports_to = manager.employee_id;
